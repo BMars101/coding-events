@@ -21,14 +21,6 @@ public class EventController {
         model.addAttribute("events", events);
         return "events/index";
     }
-//    @GetMapping
-//    public String displayHashMapEvents(Model model){
-//        events.put("Code for Philly", "Join local coders and participate in coding projects in the area");
-//        events.put("freeCodeCamp Hack Night", "Join other campers in this hackathon. Exercise skills, learn new skills and network.");
-//        events.put("Tech Elevator Career Launch", "Learn about how to break into the tech industry with industry leaders.");
-//        model.addAttribute("events", events);
-//        return "events/index";
-//    }
 
     //lives at /events/create
     @GetMapping("create")

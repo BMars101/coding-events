@@ -1,6 +1,9 @@
 body {
     font-size: 18px;
 }
+#btn{
+    padding-top: 10px;
+}
 th {
     font-size: 28px;
 }
