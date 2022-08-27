@@ -1,0 +1,12 @@
+th {
+    font-size: 28px;
+}
+
+td {
+    font-size: 18px;
+}
+
+table.center {
+    margin-left: auto;
+    margin-right: auto;
+}
