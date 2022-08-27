@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
+<head th:fragment = "header">
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <link th:href="@{styles.css}" rel="stylesheet">
+    <title>Coding Events</title>
 </head>
 <body>
+    <td th:fragment="codeForPhillyAddress">123 Market St.</td>
+    <td th:fragment="freeCodeCampAddress">456 Chestnut St.</td>
+    <td th:fragment="techElevatorAddress">789 Spring Garden St.</td>
 </body>
 </html>

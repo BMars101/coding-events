@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Events</title>
-</head>
+<head th:replace="fragments :: header"></head>
 <body>
     <h1>All Events</h1>
     <p th:unless="${events} and ${events.size()}">No Events!</p>
-    <ul>
+    <table class="center">
+        <tr>
+            <th>Event Name</th>
+            <th>Description</th>
+            <th>Address</th>
+        </tr>
         <th:block th:each="event : ${events}">
-            <li th:text="${event}"></li>
+            <tr>
+                <td th:text="${event.key}"></td>
+                <td th:text="${event.value}"></td>
+                <th:block th:if='${event.key.equals("Code for Philly")}'>
+                    <td th:replace="fragments :: codeForPhillyAddress"></td>
+                </th:block>
+                <th:block th:if='${event.key.equals("freeCodeCamp Hack Night")}'>
+                    <td th:replace="fragments :: freeCodeCampAddress"></td>
+                </th:block>
+                <th:block th:if='${event.key.equals("Tech Elevator")}'>
+                    <td th:replace="fragments :: techElevatorAddress"></td>
+                </th:block>
+
+            </tr>
         </th:block>
-    </ul>
+    </table>
 </body>
 </html>
