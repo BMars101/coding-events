@@ -1,8 +1,12 @@
 package org.launchcode.codingevents.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.*;
 import java.util.Objects;
 
+@Entity
 public class Event {
 
     @NotBlank
@@ -27,12 +31,13 @@ public class Event {
     @NotNull
     @Min(value=1, message="At least one attendee required")
     private Integer numOfAttendees;
+
+    @Id
+    @GeneratedValue
     private int id;
-    private static int nextId = 1;
     private EventType type;
 
     public Event(String name, String description, String contactEmail, String location, boolean mustRegister, Integer numOfAttendees, EventType type) {
-        this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
@@ -40,13 +45,9 @@ public class Event {
         this.mustRegister = mustRegister;
         this.numOfAttendees = numOfAttendees;
         this.type = type;
-        this.id = nextId;
-        nextId++;
+        this.id = id;
     }
-    public Event(){
-        this.id = nextId;
-        nextId++;
-    }
+    public Event(){}
 
     public String getDescription() {
         return description;
