@@ -7,17 +7,12 @@ import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @Entity
-public class EventCategory {
-
-    @Id
-    @GeneratedValue
-    private int id;
+public class EventCategory extends AbstractEntity{
 
     @NotBlank
     private String name;
 
-    public EventCategory(int id, String name){
-        this.id = id;
+    public EventCategory(String name){
         this.name = name;
     }
 
@@ -30,21 +25,21 @@ public class EventCategory {
     public void setName(String name) {
         this.name = name;
     }
+//
+//    public int getId() {
+//        return id;
+//    }
 
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        EventCategory that = (EventCategory) o;
-        return id == that.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        EventCategory that = (EventCategory) o;
+//        return id == that.id;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id);
+//    }
 }

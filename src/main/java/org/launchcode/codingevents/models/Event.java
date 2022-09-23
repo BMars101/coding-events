@@ -7,7 +7,7 @@ import javax.validation.constraints.*;
 import java.util.Objects;
 
 @Entity
-public class Event {
+public class Event extends AbstractEntity{
 
     @NotBlank
     @Size(min = 3, max = 20, message = "Name must be between 3 and 20 characters.")
@@ -32,9 +32,7 @@ public class Event {
     @Min(value=1, message="At least one attendee required")
     private Integer numOfAttendees;
 
-    @Id
-    @GeneratedValue
-    private int id;
+
     private EventType type;
 
     public Event(String name, String description, String contactEmail, String location, boolean mustRegister, Integer numOfAttendees, EventType type) {
@@ -45,7 +43,7 @@ public class Event {
         this.mustRegister = mustRegister;
         this.numOfAttendees = numOfAttendees;
         this.type = type;
-        this.id = id;
+
     }
     public Event(){}
 
@@ -61,9 +59,6 @@ public class Event {
         return name;
     }
 
-    public int getId() {
-        return id;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -114,16 +109,4 @@ public class Event {
         return name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Event event = (Event) o;
-        return id == event.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
