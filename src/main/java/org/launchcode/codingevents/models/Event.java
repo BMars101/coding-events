@@ -1,10 +1,15 @@
 package org.launchcode.codingevents.models;
 
+//import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
-import java.util.Objects;
+
 
 @Entity
 public class Event extends AbstractEntity{
@@ -13,47 +18,21 @@ public class Event extends AbstractEntity{
     @Size(min = 3, max = 20, message = "Name must be between 3 and 20 characters.")
     private String name;
 
-    @Size(max=500, message = "Description too long.")
-    private String description;
+    @ManyToOne
+    @NotNull(message = "Category is required")
+    private EventCategory eventCategory;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @Valid
     @NotNull
-    @NotBlank
-    @Size(max=46, message= "Please enter a location.")
-    private String location;
+    private EventDetails eventDetails;
 
-    @NotBlank
-    @Email(message = "Invalid email. Please try again")
-    private String contactEmail;
-
-    @AssertTrue(message="Must register for event.")
-    private boolean mustRegister = true;
-
-    @NotNull
-    @Min(value=1, message="At least one attendee required")
-    private Integer numOfAttendees;
-
-
-    private EventType type;
-
-    public Event(String name, String description, String contactEmail, String location, boolean mustRegister, Integer numOfAttendees, EventType type) {
+    public Event(String name, EventCategory eventCategory) {
         this.name = name;
-        this.description = description;
-        this.contactEmail = contactEmail;
-        this.location = location;
-        this.mustRegister = mustRegister;
-        this.numOfAttendees = numOfAttendees;
-        this.type = type;
+        this.eventCategory = eventCategory;
 
     }
     public Event(){}
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public String getName() {
         return name;
@@ -64,44 +43,22 @@ public class Event extends AbstractEntity{
         this.name = name;
     }
 
-    public String getContactEmail() {
-        return contactEmail;
+
+
+    public EventCategory getEventCategory() {
+        return eventCategory;
     }
 
-    public void setContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail;
+    public void setEventCategory(EventCategory eventCategory) {
+        this.eventCategory = eventCategory;
     }
 
-    public String getLocation() {
-        return location;
+    public EventDetails getEventDetails() {
+        return eventDetails;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public boolean isMustRegister() {
-        return mustRegister;
-    }
-
-    public void setMustRegister(boolean mustRegister) {
-        this.mustRegister = mustRegister;
-    }
-
-    public Integer getNumOfAttendees() {
-        return numOfAttendees;
-    }
-
-    public void setNumOfAttendees(Integer numOfAttendees) {
-        this.numOfAttendees = numOfAttendees;
-    }
-
-    public EventType getType() {
-        return type;
-    }
-
-    public void setType(EventType type) {
-        this.type = type;
+    public void setEventDetails(EventDetails eventDetails) {
+        this.eventDetails = eventDetails;
     }
 
     @Override

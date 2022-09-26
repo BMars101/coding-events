@@ -1,16 +1,19 @@
 package org.launchcode.codingevents.models;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class EventCategory extends AbstractEntity{
 
     @NotBlank
     private String name;
+
+    @OneToMany(mappedBy = "eventCategory")
+    private final List<Event> events = new ArrayList<>();
 
     public EventCategory(String name){
         this.name = name;
@@ -25,21 +28,13 @@ public class EventCategory extends AbstractEntity{
     public void setName(String name) {
         this.name = name;
     }
-//
-//    public int getId() {
-//        return id;
-//    }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        EventCategory that = (EventCategory) o;
-//        return id == that.id;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id);
-//    }
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
